@@ -1,0 +1,105 @@
+
+
+{% extends "base.html" %}
+{% block tile %}Profile{% endblock %}
+
+{% block content %}
+<br>
+<h1 align="center" style="font-size: 50px"><b>Profile</b></h1>
+<br>
+<div class="card">
+    <div style="font-size: 38px" class="card-header">
+        <strong>{{current_user.name + " " + current_user.surname}}</strong>
+    </div>
+
+    <div class="card-body">
+        <p class="card-text">
+
+        <div class="container">
+            <div class="row">
+                <div style="font-size: 19px; margin: 30px 0" class="col-8">
+                    <strong>Name: </strong>
+                    {{current_user.name}}<br/>
+
+                    <strong>Surname: </strong>
+                    {{current_user.surname}}<br/>
+
+                    <strong>Mail: </strong>
+                    {{current_user.email}}<br/>
+
+                    <strong>Username: </strong>
+                    {{current_user.username}}<br/>
+
+                    <strong>About: </strong>
+                    {{current_user.about}}<br/>
+
+                </div>
+                {% if current_user.profile_pic %}
+                <div class="col-4">
+                    <img src="{{ url_for('static' , filename='images/' + current_user.profile_pic)}}" width="200" align="right">
+                </div>
+                {%else%}
+                <div class="col-4">
+                    <img src="{{ url_for('static' , filename='images/default_profile_pic.png')}}" width="200" align="right">
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+
+        </p>
+    </div>
+</div>
+
+
+<br/>
+
+
+<div class="card">
+    <div style="font-size: 38px" class="card-header">
+        <strong>Update Profile</strong>
+    </div>
+
+    <div class="card-body">
+        <form method="POST" enctype="multipart/form-data">
+             <div style="width: 450px" class="container">
+
+        <div class="form-group">
+            <label for="update_name"><strong>Name:</strong></label>
+            <input type="text" class="form-control" id="update_name" name="update_name" placeholder="Name" value="{{current_user.name}}">
+        </div>
+        <div class="form-group">
+            <label for="update_surname"><strong>Surname:</strong></label>
+            <input type="text" class="form-control" id="update_surname" name="update_surname" placeholder="Surname" value="{{current_user.surname}}">
+        </div>
+        <div class="form-group">
+            <label for="update_username"><strong>Username:</strong></label>
+            <input type="text" class="form-control" id="update_username" name='update_username' placeholder="Username" value={{current_user.username}}>
+        </div>
+        <div class="form-group">
+            <label for="update_email"><strong>Email Address:</strong></label>
+            <input type="email" class="form-control" id="update_email" name="update_email" placeholder="Email" value={{current_user.email}}>
+        </div>
+        <div class="form-group">
+            <label for="update_password"><strong>New Password:</strong></label>
+            <input type="password" class="form-control" id="update_password" name="update_password" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <label for="update_about"><strong>About:</strong></label>
+            <textarea rows="5" cols="50" name="update_about" id="update_about" class="form-control" placeholder="About">{{current_user.about}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="update_profile_pic"><strong>Profile Picture:</strong></label>
+            <input rows="5" cols="50" class="form-control" type="file" name="update_profile_pic" id="update_profile_pic">
+        </div>
+
+        <button style="margin-left: 160px" type="submit" class="btn btn-primary">Update</button>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<br/>
+
+{% endblock %}

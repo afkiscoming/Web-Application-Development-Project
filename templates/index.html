@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+<br>
+<h1 align="center" style="font-size: 50px"><b>Posts</b></h1>
+<br>
+
+<div class="container">
+    {% for note in notes %}
+
+    <tr>
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-2">
+                    {% if note[6] != "" %}
+                    <img src="{{ url_for('static' , filename='images/' + note[6])}}" width="120" align="left">
+                    {%else%}
+                    <img src="{{ url_for('static' , filename='images/default_profile_pic.png')}}" width="120"
+                         align="left">
+                    {% endif %}
+                </div>
+
+                <div class="col-10">
+                    <h1>{{note[1]}}</h1>
+                    <p style="margin: 10px 0; font-size: 18px;"><b>@{{note[5]}}</b></p>
+                </div>
+
+                <div class="col">
+                    <br>
+                    <p style="font-size: 18px">{{note[2]}}</p>
+                    <p><b>Topic: {{note[3]}} </b></p>
+                    <hr style="margin: 20px 0">
+
+                </div>
+            </div>
+        </div>
+    </tr>
+
+    {%endfor%}
+</div>
+{% endblock %}

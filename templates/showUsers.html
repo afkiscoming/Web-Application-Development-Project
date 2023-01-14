@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}All Users{% endblock %}
+
+{% block content %}
+<br>
+<h1 align="center" style="font-size: 50px"><b>All Users</b></h1>
+<br>
+    {%for user in users%}
+<div class="card" style="width: 700px; margin-left: 200px">
+
+    <tr>
+        <div style="font-size: 38px" class="card-header">
+            <strong>@{{user[5]}}</strong>
+        </div>
+
+        <div class="card-body">
+        <p class="card-text">
+
+        <div class="container">
+            <div class="row">
+                <div style="font-size: 19px; margin: 30px 0" class="col-8">
+                    <strong>Name: </strong>
+                    {{user[1]}}<br/>
+
+                    <strong>Surname: </strong>
+                    {{user[2]}}<br/>
+
+                    <strong>Mail: </strong>
+                    {{user[3]}}<br/>
+
+                    <strong>Username: </strong>
+                    {{user[5]}}<br/>
+
+                    <strong>About: </strong>
+                    {{user[7]}}<br/>
+
+                </div>
+
+               <div class="col-4">
+                {% if user[6] != "" %}
+                    <img src="{{ url_for('static' , filename='images/' + user[6])}}" width="200" align="right">
+
+                {%else%}
+                    <img src="{{ url_for('static' , filename='images/default_profile_pic.png')}}" width="200" align="right">
+
+
+                {% endif %}
+                </div>
+
+            </div>
+        </div>
+
+        </p>
+    </div>
+
+    </tr>
+
+</div>
+<br>
+   {% endfor%}
+{% endblock %}
